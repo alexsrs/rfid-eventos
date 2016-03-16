@@ -1,6 +1,5 @@
 package br.com.creapix.modelo;
 
-//import java.math.BigInteger;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -19,8 +18,6 @@ public class Movimentacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	// private BigInteger qrcode;
 
 	@Enumerated(EnumType.STRING)
 	private TipoDeMovimentacao tipoDeMovimentacao;
@@ -76,5 +73,4 @@ public class Movimentacao {
 	public TipoDeMovimentacao getTipoDeMovimentacao() {
 		return tipoDeMovimentacao;
 	}
-
 }

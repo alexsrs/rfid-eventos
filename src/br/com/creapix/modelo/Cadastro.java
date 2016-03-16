@@ -1,12 +1,18 @@
 package br.com.creapix.modelo;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,8 +64,8 @@ public class Cadastro {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(String tfNome) {
+		this.nome = tfNome;
 	}
 
 	public String getTelefone() {
@@ -82,8 +88,36 @@ public class Cadastro {
 		this.movimentacoes = movimentacoes;
 	}
 
-	public byte[] getImagem() {
-		return imagem;
+	public BufferedImage getImagem(byte[] bytes) throws IOException {
+
+		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+		Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
+
+		// ImageIO is a class containing static methods for locating
+		// ImageReaders
+		// and ImageWriters, and performing simple encoding and decoding.
+
+		ImageReader reader = (ImageReader) readers.next();
+		Object source = bis;
+		ImageInputStream iis = ImageIO.createImageInputStream(source);
+		reader.setInput(iis, true);
+		ImageReadParam param = reader.getDefaultReadParam();
+
+		BufferedImage image = reader.read(0, param);
+		// got an image file
+
+		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+				BufferedImage.TYPE_INT_RGB);
+		// bufferedImage is the RenderedImage to be written
+		Graphics2D g2 = bufferedImage.createGraphics();
+		g2.drawImage(image, null, null);
+		/*
+		 * File imageFile = new File("C:\\newrose2.jpg");
+		 * ImageIO.write(bufferedImage, "jpg", imageFile);
+		 * 
+		 * System.out.println(imageFile.getPath());
+		 */
+		return image;
 	}
 
 	public void setImagem(String caminho) throws IOException {
@@ -93,7 +127,5 @@ public class Cadastro {
 		ImageIO.write(originalImage, "jpg", baos);
 		baos.flush();
 		this.imagem = baos.toByteArray();
-
 	}
-
 }
