@@ -21,6 +21,11 @@ public class MenuController {
 		myController.setScreen(Main.CADASTRO_SCREEN);
 	}
 
+	@FXML
+	private void goToWebCam(ActionEvent event) {
+		myController.setScreen(Main.WEBCAM_SCREEN);
+	}
+
 	public void setScreenParent(ScreensController screenParent) {
 		myController = screenParent;
 	}

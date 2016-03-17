@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 
 import br.com.creapix.modelo.Cadastro;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CadastroController extends MenuController implements Initializable, ControlledScreen {
@@ -39,7 +39,7 @@ public class CadastroController extends MenuController implements Initializable,
 	private Button btnGravar;
 
 	@FXML
-	private ImageView tfFoto;
+	private static ImageView tfFoto;
 
 	public TextField getTfQrcode() {
 		return tfQrcode;
@@ -93,19 +93,31 @@ public class CadastroController extends MenuController implements Initializable,
 			// this.tfFoto.setImage(image2);
 			// query.setParameter("pConta", conta);
 
-			Query query = (Query) manager.createQuery("select m from Cadastro m where m.cadastro=:pCadastro");
+			// Query query = (Query) manager.createQuery("select m from Cadastro
+			// m where m.cadastro=:pCadastro");
 
-			((javax.persistence.Query) query).setParameter("pCadastro", cadastro);
+			// ((javax.persistence.Query) query).setParameter("pCadastro",
+			// cadastro);
 
-			tfFoto.getImage();
-			apagaForm(5);
+			// tfFoto.getImage();
+			limpaForm(10);
 
 		} catch (Exception ex) {
 			alert(ex.getMessage());
 		}
 	}
 
-	public void apagaForm(int seconds) {
+	public ImageView getTfFoto() {
+		return tfFoto;
+	}
+
+	public static void setTfFoto(Image bufImage) {
+		// ImageView imageview = new ImageView(foto);
+		tfFoto.setImage(bufImage);
+		// = imageview;
+	}
+
+	public void limpaForm(int seconds) {
 		Timer timer = new Timer();
 		timer.schedule(new apagaTask(), seconds * 1000);
 	}

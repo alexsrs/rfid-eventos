@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/classmate-1.3.0.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/geronimo-jta_1.1_spec-1.1.1.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/hibernate-commons-annotations-5.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/hibernate-core-5.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/hibernate-entitymanager-5.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/jandex-2.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/javassist-3.20.0-GA.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/jboss-logging-3.3.0.Final.jar"/>
-	<classpathentry kind="lib" path="D:/Users/Alex/workspace/financas/lib/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/classmate-1.3.0.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/geronimo-jta_1.1_spec-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/hibernate-commons-annotations-5.0.1.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/hibernate-core-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/hibernate-entitymanager-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/jandex-2.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/mysql-connector-java-5.1.38-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/bridj-0.6.3-20130316.190111-13.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/webcam-capture-0.3.10-RC7.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alex/workspace/rfid-eventos/lib/slf4j-api-1.7.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
