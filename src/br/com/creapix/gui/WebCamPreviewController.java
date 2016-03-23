@@ -1,6 +1,7 @@
 package br.com.creapix.gui;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -177,18 +178,12 @@ public class WebCamPreviewController extends MenuController implements Initializ
 		}
 	}
 
-	public void tirarFoto(ActionEvent event) {
+	public void tirarFoto(ActionEvent event) throws IOException {
 
 		btnStartCamera.setDisable(false);
-		btnDisposeCamera.setDisable(true);
-		BufferedImage bufImage = selWebCam.getImage();
-
-		Image image = SwingFXUtils.toFXImage(bufImage, null);
-
-		CadastroController.setTfFoto(image);
-
+		btnDisposeCamera.setDisable(false);
+		btnTirarFoto.setDisable(true);
 		stopCamera = true;
-		myController.setScreen(Main.CADASTRO_SCREEN);
 
 	}
 
@@ -199,13 +194,28 @@ public class WebCamPreviewController extends MenuController implements Initializ
 		btnTirarFoto.setDisable(false);
 	}
 
-	public void disposeCamera(ActionEvent event) {
+	public void disposeCamera(ActionEvent event) throws IOException {
 		stopCamera = true;
-		closeCamera();
-		Webcam.shutdown();
 		btnTirarFoto.setDisable(true);
 		btnStartCamera.setDisable(true);
+		System.out.println("1");
 
+		BufferedImage bufImage = selWebCam.getImage();
+		// ImageIO.write(bufImage, "PNG", new File("imagens/temp.jpg"));
+
+		// CadastroController.setTfFoto(bufImage);
+		myController.setScreen(Main.CADASTRO_SCREEN);
+		CadastroController.retorna(bufImage);
+
+		closeCamera();
+
+		Webcam.shutdown();
+
+		// CadastroController.retorna();
+		// CadastroController.retorna();
+		// Cadastro.setImagem(bufImage);
+
+		// Cadastro.setImagem("c:\\image\\eu.jpg");
 	}
 
 	class WebCamInfo {

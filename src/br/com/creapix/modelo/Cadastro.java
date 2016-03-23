@@ -1,6 +1,7 @@
 package br.com.creapix.modelo;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -35,7 +36,7 @@ public class Cadastro {
 
 	@Lob
 	@Column(name = "BOOK_IMAGE", nullable = false, columnDefinition = "mediumblob")
-	private byte[] imagem;
+	private static byte[] imagem;
 
 	public String getQrcode() {
 		return qrcode;
@@ -88,6 +89,10 @@ public class Cadastro {
 		this.movimentacoes = movimentacoes;
 	}
 
+	public byte[] getImagem() {
+		return imagem;
+	}
+
 	public BufferedImage getImagem(byte[] bytes) throws IOException {
 
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
@@ -111,14 +116,18 @@ public class Cadastro {
 		// bufferedImage is the RenderedImage to be written
 		Graphics2D g2 = bufferedImage.createGraphics();
 		g2.drawImage(image, null, null);
+
 		/*
 		 * File imageFile = new File("C:\\newrose2.jpg");
-		 * ImageIO.write(bufferedImage, "jpg", imageFile);
 		 * 
 		 * System.out.println(imageFile.getPath());
 		 */
-		return image;
+		return bufferedImage;
 	}
+
+	/*
+	 * public void setImagem(byte[] byteImagem) { imagem = byteImagem; }
+	 */
 
 	public void setImagem(String caminho) throws IOException {
 
@@ -126,6 +135,24 @@ public class Cadastro {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(originalImage, "jpg", baos);
 		baos.flush();
-		this.imagem = baos.toByteArray();
+		imagem = baos.toByteArray();
 	}
+
+	public static void setImagem(BufferedImage bufImagem) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write(bufImagem, "jpg", baos);
+		baos.flush();
+		imagem = baos.toByteArray();
+	}
+
+	public void setImagem(Image img) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		BufferedImage bufImagem = (BufferedImage) img;
+
+		ImageIO.write(bufImagem, "jpg", baos);
+		baos.flush();
+		imagem = baos.toByteArray();
+	}
+
 }

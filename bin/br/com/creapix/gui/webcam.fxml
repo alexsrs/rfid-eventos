@@ -19,7 +19,7 @@
             <Font name="Segoe UI" size="18.0" fx:id="x1" />
           </font>
         </Button>
-        <Button font="$x1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tirarFoto" prefHeight="50.0" prefWidth="190.0" text="Tirar Foto" />
+        <Button fx:id="btnTirarFoto" font="$x1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tirarFoto" prefHeight="50.0" prefWidth="190.0" text="Tirar Foto" />
         <Button fx:id="btnDisposeCamera" font="$x1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#disposeCamera" prefHeight="50.0" prefWidth="190.0" text="Dispose Camera" />
       </children>
     </FlowPane>

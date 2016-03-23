@@ -20,4 +20,11 @@
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>gui</name>
+			<type>2</type>
+			<location>D:/Users/Alex/workspace/rfid-eventos/bin/br/com/creapix/gui</location>
+		</link>
+	</linkedResources>
 </projectDescription>
