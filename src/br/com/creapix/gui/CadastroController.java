@@ -1,7 +1,5 @@
 package br.com.creapix.gui;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -11,7 +9,6 @@ import javax.persistence.EntityManager;
 
 import br.com.creapix.modelo.Cadastro;
 import br.com.creapix.util.JPAUtil;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +18,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class CadastroController extends MenuController implements Initializable, ControlledScreen {
 
@@ -45,8 +44,21 @@ public class CadastroController extends MenuController implements Initializable,
 	@FXML
 	public static ImageView imgFoto;
 
+	@FXML
+	public static Pane paneFoto;
+
+	@FXML
+	public static BorderPane cadastroBorderPane;
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		if (imgFoto == null) {
+			Image image = new Image("/br/com/creapix/gui/cam.png");
+			System.out.println(image);
+			imgFoto = new ImageView(image);
+		} else {
+			System.out.println("Estou aqui");
+		}
 		// TODO Auto-generated method stub
 
 	}
@@ -60,7 +72,6 @@ public class CadastroController extends MenuController implements Initializable,
 		manager.getTransaction().begin();
 
 		try {
-			// tfId.setId(c.getId());
 			cadastro.setNome(tfNome.getText());
 			cadastro.setTelefone(tfTelefone.getText());
 			cadastro.setEmail(tfEmail.getText());
@@ -80,29 +91,11 @@ public class CadastroController extends MenuController implements Initializable,
 		}
 	}
 
-	/*
-	 * public static void setTfFoto(Image image) { // ImageView imageview = new
-	 * ImageView(foto); tfFoto.setImage(image); // = imageview; }
-	 */
-
-	public static void retorna(BufferedImage bufImage) throws IOException {
-		// String file = new String("test.png");
-		// setTfFoto(bufImage);
-		// SwingFXUtils.toFXImage(bufImage, image);
-
-		WritableImage wimage = SwingFXUtils.toFXImage(bufImage, null);
-		System.out.println("Writable Image" + wimage);
-		System.out.println("bUfered Image" + bufImage);
-
-		// SwingFXUtils.toFXImage(bufImage, image);
-		// ImageView tfFoto = new ImageView(image);
-		imgFoto.setImage(wimage);
-		Cadastro.setImagem(bufImage);
-	}
-
-	public static void setImgFoto(Image image) {
-		// TODO Auto-generated method stub
+	public static void setImgFoto(WritableImage image) {
+		System.out.println("Image=  " + image);
 		imgFoto.setImage(image);
+
+		System.out.println("Image=  " + imgFoto.getImage());
 	}
 
 	public TextField getTfQrcode() {
@@ -137,15 +130,6 @@ public class CadastroController extends MenuController implements Initializable,
 		alert.setTitle("Mensagem");
 		alert.setContentText(msg);
 		alert.show();
-	}
-
-	public ImageView getImgViewFoto() {
-
-		return imgFoto;
-	}
-
-	public static void setImgFoto(ImageView imgFoto) {
-		CadastroController.imgFoto = imgFoto;
 	}
 
 	public Cadastro getCadastro() {

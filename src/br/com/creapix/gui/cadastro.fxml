@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.creapix.gui.CadastroController">
+<BorderPane fx:id="cadastroBordePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.creapix.gui.CadastroController">
    <bottom>
       <GridPane prefHeight="333.0" prefWidth="720.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -76,10 +76,13 @@
       </GridPane>
    </center>
    <right>
-      <Pane prefHeight="227.0" prefWidth="195.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="paneFoto" prefHeight="227.0" prefWidth="195.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnFoto" layoutX="71.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToWebCam" text="Button" />
-            <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="-3.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="14.0" onMouseClicked="#eventGravarButtonClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../imagens/cam.png" />
+               </image></ImageView>
          </children>
       </Pane>
    </right>

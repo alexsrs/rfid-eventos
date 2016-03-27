@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 
@@ -199,23 +200,12 @@ public class WebCamPreviewController extends MenuController implements Initializ
 		btnTirarFoto.setDisable(true);
 		btnStartCamera.setDisable(true);
 		System.out.println("1");
-
 		BufferedImage bufImage = selWebCam.getImage();
-		// ImageIO.write(bufImage, "PNG", new File("imagens/temp.jpg"));
-
-		// CadastroController.setTfFoto(bufImage);
 		myController.setScreen(Main.CADASTRO_SCREEN);
-		CadastroController.retorna(bufImage);
-
+		WritableImage image = SwingFXUtils.toFXImage(bufImage, null);
+		CadastroController.setImgFoto(image);
 		closeCamera();
-
 		Webcam.shutdown();
-
-		// CadastroController.retorna();
-		// CadastroController.retorna();
-		// Cadastro.setImagem(bufImage);
-
-		// Cadastro.setImagem("c:\\image\\eu.jpg");
 	}
 
 	class WebCamInfo {

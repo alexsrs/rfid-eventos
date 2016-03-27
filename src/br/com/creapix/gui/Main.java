@@ -21,9 +21,7 @@ public class Main extends Application {
 		mainContainer.loadScreen(Main.MAIN_SCREEN, Main.MAIN_SCREEN_FXML);
 		mainContainer.loadScreen(Main.CADASTRO_SCREEN, Main.CADASTRO_SCREEN_FXML);
 		mainContainer.loadScreen(Main.WEBCAM_SCREEN, Main.WEBCAM_SCREEN_FXML);
-
 		mainContainer.setScreen(Main.MAIN_SCREEN);
-
 		Group root = new Group();
 		root.getChildren().addAll(mainContainer);
 		Scene scene = new Scene(root);
