@@ -52,6 +52,7 @@ public class CadastroController extends MenuController implements Initializable,
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+
 		if (imgFoto == null) {
 			Image image = new Image("/br/com/creapix/gui/cam.png");
 			System.out.println(image);
@@ -59,8 +60,6 @@ public class CadastroController extends MenuController implements Initializable,
 		} else {
 			System.out.println("Estou aqui");
 		}
-		// TODO Auto-generated method stub
-
 	}
 
 	Cadastro cadastro = new Cadastro();
