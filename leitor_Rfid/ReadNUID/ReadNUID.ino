@@ -65,15 +65,15 @@ void loop() {
   if ( ! rfid.PICC_ReadCardSerial())
     return;
 
-  Serial.print(F("PICC type: "));
+  //Serial.print(F("PICC type: "));
   MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
-  Serial.println(rfid.PICC_GetTypeName(piccType));
+  //Serial.println(rfid.PICC_GetTypeName(piccType));
 
   // Check is the PICC of Classic MIFARE type
   if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI &&  
     piccType != MFRC522::PICC_TYPE_MIFARE_1K &&
     piccType != MFRC522::PICC_TYPE_MIFARE_4K) {
-    Serial.println(F("sua tag não é MIFARE Classic."));
+    //Serial.println(F("sua tag não é MIFARE Classic."));
     return;
   }
 
@@ -81,20 +81,20 @@ void loop() {
     rfid.uid.uidByte[1] != nuidPICC[1] || 
     rfid.uid.uidByte[2] != nuidPICC[2] || 
     rfid.uid.uidByte[3] != nuidPICC[3] ) {
-    Serial.println(F("Um novo cartão foi detectado."));
+   // Serial.println(F("Um novo cartão foi detectado."));
 
     // Store NUID into nuidPICC array
     for (byte i = 0; i < 4; i++) {
       nuidPICC[i] = rfid.uid.uidByte[i];
     }
    
-    Serial.println(F("A NUID tag é:"));
-    Serial.print(F("Hex: "));
+   // Serial.println(F("A NUID tag é:"));
+   // Serial.print(F("Hex: "));
     printHex(rfid.uid.uidByte, rfid.uid.size);
     Serial.println();
-    Serial.print(F("Dec: "));
-    printDec(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
+   // Serial.print(F("Dec: "));
+ //   printDec(rfid.uid.uidByte, rfid.uid.size);
+   // Serial.println();
   }
   else Serial.println(F("Este cartão acaba de ser usado."));
 
