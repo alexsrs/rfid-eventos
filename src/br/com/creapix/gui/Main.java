@@ -27,6 +27,8 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Cadastro Rfid - www.creapix.com.br");
+		primaryStage.setWidth(900);
+		primaryStage.setHeight(690);
 		primaryStage.centerOnScreen();
 		primaryStage.show();
 	}

@@ -8,82 +8,41 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane fx:id="cadastroBordePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.creapix.gui.CadastroController">
-   <bottom>
-      <GridPane prefHeight="333.0" prefWidth="720.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="109.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="693.0" minWidth="10.0" prefWidth="611.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Nome:">
-               <font>
-                  <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-               </font>
-            </Label>
-            <Label text="Email:" GridPane.rowIndex="2">
-               <font>
-                  <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-               </font>
-            </Label>
-            <Label text="Telefone:" GridPane.rowIndex="1">
-               <font>
-                  <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tfNome" GridPane.columnIndex="1" />
-            <TextField fx:id="tfTelefone" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="btnGravar" mnemonicParsing="false" onAction="#eventGravarButtonClick" text="Gravar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="40.0" left="40.0" right="40.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </bottom>
-   <center>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="5.0" prefWidth="105.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="529.0" minWidth="10.0" prefWidth="415.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Numero:">
-               <font>
-                  <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-               </font></Label>
-            <TextField fx:id="tfId" GridPane.columnIndex="1" />
-            <Label text="Qrcode:" GridPane.rowIndex="1">
-               <font>
-                  <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tfQrcode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-         <BorderPane.margin>
-            <Insets left="40.0" right="40.0" top="40.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </center>
-   <right>
-      <Pane fx:id="paneFoto" prefHeight="227.0" prefWidth="195.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnFoto" layoutX="71.0" layoutY="199.0" mnemonicParsing="false" onAction="#goToWebCam" text="Button" />
-            <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="14.0" onMouseClicked="#eventGravarButtonClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../imagens/cam.png" />
-               </image></ImageView>
-         </children>
-      </Pane>
-   </right>
-   </BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
+      <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="436.0" layoutY="14.0" onMouseClicked="#eventGravarButtonClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../imagens/cam.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnFoto" layoutX="485.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToWebCam" text="Button" />
+      <Button fx:id="btnTagRfid" layoutX="365.0" layoutY="22.0" mnemonicParsing="false" onAction="#eventPegarRfidUUID" text="Button" />
+      <Label fx:id="tagRfid" layoutX="104.0" layoutY="18.0" prefHeight="32.0" prefWidth="252.0" text="Label" />
+      <Label layoutX="11.0" layoutY="23.0" text="Rfid UUID">
+         <font>
+            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfId" layoutX="104.0" layoutY="178.0" prefHeight="25.0" prefWidth="313.0" />
+      <Button fx:id="btnGravar" layoutX="275.0" layoutY="226.0" mnemonicParsing="false" onAction="#eventGravarButtonClick" text="Gravar" />
+      <TextField fx:id="tfEmail" layoutX="104.0" layoutY="141.0" prefHeight="25.0" prefWidth="313.0" />
+      <TextField fx:id="tfTelefone" layoutX="104.0" layoutY="103.0" prefHeight="25.0" prefWidth="313.0" />
+      <TextField fx:id="tfNome" layoutX="104.0" layoutY="64.0" prefHeight="25.0" prefWidth="313.0" />
+      <Label layoutX="14.0" layoutY="104.0" text="Telefone:">
+         <font>
+            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="142.0" text="Email:">
+         <font>
+            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="34.0" layoutY="65.0" text="Nome:">
+         <font>
+            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
