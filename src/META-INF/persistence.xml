@@ -13,9 +13,9 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
 <properties>
 <!--  Propriedades JDBC  -->
 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/rfid_eventos"/>
-<property name="javax.persistence.jdbc.user" value="root"/>
-<property name="javax.persistence.jdbc.password" value="half2500"/>
+<property name="javax.persistence.jdbc.url" value="jdbc:mysql://creapix.ddns.net/rfid_eventos"/>
+<property name="javax.persistence.jdbc.user" value="alexsrs"/>
+<property name="javax.persistence.jdbc.password" value="crea1234"/>
 <!--  Configurações específicas do Hibernate  -->
 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 <property name="hibernate.hbm2ddl.auto" value="update"/>

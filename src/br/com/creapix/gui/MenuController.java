@@ -19,14 +19,15 @@ public class MenuController {
 
 	@FXML
 	private void goToCadastro(ActionEvent event) {
+
 		myController.setScreen(Main.CADASTRO_SCREEN);
-		myController.getChildren().add(CadastroController.imgFoto);
+
 	}
 
 	@FXML
 	private void goToWebCam(ActionEvent event) {
 		myController.setScreen(Main.WEBCAM_SCREEN);
-		// myController.getChildren().remove(CadastroController.imgFoto);
+
 	}
 
 	public void setScreenParent(ScreensController screenParent) {

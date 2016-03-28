@@ -50,7 +50,7 @@ public class SerialComLeitura implements Runnable, SerialPortEventListener {
 
 	}
 
-	public static String getPeso() {
+	public static String getUUID() {
 
 		return peso;
 
@@ -319,7 +319,7 @@ public class SerialComLeitura implements Runnable, SerialPortEventListener {
 
 			setPeso(new String(bufferLeitura));
 
-			System.out.println(getDateTime() + " A temperatura agora é " + getPeso());
+			System.out.println(getDateTime() + " UUID: " + getUUID());
 
 			// String temp = getPeso();
 			// System.out.println(temp);

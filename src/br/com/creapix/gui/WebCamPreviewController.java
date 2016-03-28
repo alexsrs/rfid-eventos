@@ -46,7 +46,6 @@ public class WebCamPreviewController extends MenuController implements Initializ
 
 	private BufferedImage grabbedImage;
 
-	// private WebcamPanel selWebCamPanel = null;
 	private Webcam selWebCam = null;
 	private boolean stopCamera = false;
 	private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<Image>();
@@ -204,6 +203,7 @@ public class WebCamPreviewController extends MenuController implements Initializ
 		myController.setScreen(Main.CADASTRO_SCREEN);
 		WritableImage image = SwingFXUtils.toFXImage(bufImage, null);
 		CadastroController.setImgFoto(image);
+		CadastroController.imgFoto.setVisible(true);
 		closeCamera();
 		Webcam.shutdown();
 	}

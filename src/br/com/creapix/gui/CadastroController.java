@@ -1,10 +1,14 @@
 package br.com.creapix.gui;
 
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 
 import br.com.creapix.modelo.Cadastro;
@@ -17,15 +21,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import serial.SerialComLeitura;
 
 public class CadastroController extends MenuController implements Initializable, ControlledScreen {
 
 	@FXML
-	private Label tagRfid;
+	public BorderPane borderPane;
+
+	@FXML
+	public AnchorPane anchorPane;
+
+	@FXML
+	private Label lblTagRfid;
 
 	@FXML
 	private TextField tfNome;
@@ -43,15 +54,18 @@ public class CadastroController extends MenuController implements Initializable,
 	private Button btnTagRfid;
 
 	@FXML
-	public static ImageView imgFoto;
+	static ImageView imgFoto;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-
+		setLblTagRfid("Clique no botão e aproxime o card");
 		if (imgFoto == null) {
-			Image image = new Image("/br/com/creapix/gui/cam.png");
-			System.out.println(image);
-			imgFoto = new ImageView(image);
+			System.out.println(imgFoto);
+			imgFoto = new ImageView("/br/com/creapix/gui/cam.png");
+			anchorPane.getChildren().add(imgFoto);
+			imgFoto.setX(710);
+			imgFoto.setY(30);
+			System.out.println(imgFoto.getImage());
 		}
 	}
 
@@ -66,8 +80,8 @@ public class CadastroController extends MenuController implements Initializable,
 			cadastro.setNome(tfNome.getText());
 			cadastro.setTelefone(tfTelefone.getText());
 			cadastro.setEmail(tfEmail.getText());
-			cadastro.setQrcode(tagRfid.getText());
-			// Cadastro.setImagem(imgFoto.getImage());
+			cadastro.setQrcode(lblTagRfid.getText());
+			Cadastro.setImagem(getByteArray(imgFoto));
 
 			manager.persist(cadastro);
 			manager.getTransaction().commit();
@@ -87,11 +101,20 @@ public class CadastroController extends MenuController implements Initializable,
 		System.out.println("sera aqui");
 
 		btnTagRfid.isDisable();
-		tagRfid.setText("Aproxime o card da leitora...");
-		while (SerialComLeitura.getPeso() == null) {
+		lblTagRfid.setText("Aproxime o card da leitora...");
+		while (SerialComLeitura.getUUID() == null) {
 			verificaSerial();
 		}
 		// tag = false;
+	}
+
+	public byte[] getByteArray(ImageView imgFoto2) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write((RenderedImage) imgFoto2, "jpg", baos);
+		baos.flush();
+		byte[] bytearray = baos.toByteArray();
+		baos.close();
+		return bytearray;
 	}
 
 	private void verificaSerial() {
@@ -123,25 +146,24 @@ public class CadastroController extends MenuController implements Initializable,
 
 			@Override
 			public void run() {
-				setTagRfid(SerialComLeitura.getPeso());
+				setLblTagRfid(SerialComLeitura.getUUID());
 			}
 		});
 
 		leitura.FecharCom();
 	}
 
-	public String getTagRfid() {
-		return tagRfid.getText();
+	public String getLblTagRfid() {
+		return lblTagRfid.getText();
 	}
 
-	public void setTagRfid(String string) {
-		tagRfid.setText(string);
+	public void setLblTagRfid(String string) {
+		lblTagRfid.setText(string);
 	}
 
 	public static void setImgFoto(WritableImage image) {
-		System.out.println("Image=  " + image);
 		imgFoto.setImage(image);
-		System.out.println("Image=  " + imgFoto.getImage());
+
 	}
 
 	public TextField getTfNome() {

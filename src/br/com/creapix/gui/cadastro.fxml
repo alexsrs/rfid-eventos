@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" />
-      <ImageView fx:id="imgFoto" fitHeight="150.0" fitWidth="200.0" layoutX="436.0" layoutY="14.0" onMouseClicked="#eventGravarButtonClick" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../imagens/cam.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnFoto" layoutX="485.0" layoutY="175.0" mnemonicParsing="false" onAction="#goToWebCam" text="Button" />
-      <Button fx:id="btnTagRfid" layoutX="365.0" layoutY="22.0" mnemonicParsing="false" onAction="#eventPegarRfidUUID" text="Button" />
-      <Label fx:id="tagRfid" layoutX="104.0" layoutY="18.0" prefHeight="32.0" prefWidth="252.0" text="Label" />
-      <Label layoutX="11.0" layoutY="23.0" text="Rfid UUID">
-         <font>
-            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tfId" layoutX="104.0" layoutY="178.0" prefHeight="25.0" prefWidth="313.0" />
-      <Button fx:id="btnGravar" layoutX="275.0" layoutY="226.0" mnemonicParsing="false" onAction="#eventGravarButtonClick" text="Gravar" />
-      <TextField fx:id="tfEmail" layoutX="104.0" layoutY="141.0" prefHeight="25.0" prefWidth="313.0" />
-      <TextField fx:id="tfTelefone" layoutX="104.0" layoutY="103.0" prefHeight="25.0" prefWidth="313.0" />
-      <TextField fx:id="tfNome" layoutX="104.0" layoutY="64.0" prefHeight="25.0" prefWidth="313.0" />
-      <Label layoutX="14.0" layoutY="104.0" text="Telefone:">
-         <font>
-            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="142.0" text="Email:">
-         <font>
-            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="34.0" layoutY="65.0" text="Nome:">
-         <font>
-            <Font name="HelveticaNeueLTPro-Roman" size="18.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.creapix.gui.CadastroController">
+   <top>
+      <AnchorPane fx:id="anchorPane" prefHeight="690.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="84.0" layoutY="89.0" text="Nome:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="137.0" text="Telefone:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="185.0" text="E-mail:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTagRfid" layoutX="171.0" layoutY="37.0" prefHeight="30.0" prefWidth="367.0" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="104.0" layoutY="38.0" text="Rfid:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfNome" layoutX="171.0" layoutY="83.0" prefHeight="39.0" prefWidth="460.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfTelefone" layoutX="171.0" layoutY="131.0" prefHeight="39.0" prefWidth="460.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfEmail" layoutX="171.0" layoutY="179.0" prefHeight="39.0" prefWidth="460.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnTagRfid" layoutX="552.0" layoutY="40.0" mnemonicParsing="false" onAction="#eventPegarRfidUUID" text="Leitor" />
+            <Button fx:id="btnFoto" layoutX="740.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToWebCam" text="Foto" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
