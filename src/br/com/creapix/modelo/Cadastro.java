@@ -35,7 +35,7 @@ public class Cadastro {
 	private String qrcode;
 
 	@Lob
-	@Column(name = "BOOK_IMAGE", nullable = false, columnDefinition = "mediumblob")
+	@Column(name = "BOOK_IMAGE", nullable = true, columnDefinition = "mediumblob")
 	private static byte[] imagem;
 
 	public String getQrcode() {
@@ -94,43 +94,25 @@ public class Cadastro {
 	}
 
 	public BufferedImage getImagem(byte[] bytes) throws IOException {
-
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
-
 		// ImageIO is a class containing static methods for locating
 		// ImageReaders
 		// and ImageWriters, and performing simple encoding and decoding.
-
 		ImageReader reader = (ImageReader) readers.next();
 		Object source = bis;
 		ImageInputStream iis = ImageIO.createImageInputStream(source);
 		reader.setInput(iis, true);
 		ImageReadParam param = reader.getDefaultReadParam();
-
 		BufferedImage image = reader.read(0, param);
-		// got an image file
-
 		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),
 				BufferedImage.TYPE_INT_RGB);
-		// bufferedImage is the RenderedImage to be written
 		Graphics2D g2 = bufferedImage.createGraphics();
 		g2.drawImage(image, null, null);
-
-		/*
-		 * File imageFile = new File("C:\\newrose2.jpg");
-		 * 
-		 * System.out.println(imageFile.getPath());
-		 */
 		return bufferedImage;
 	}
 
-	/*
-	 * public void setImagem(byte[] byteImagem) { imagem = byteImagem; }
-	 */
-
 	public void setImagem(String caminho) throws IOException {
-
 		BufferedImage originalImage = ImageIO.read(new File(caminho));
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(originalImage, "jpg", baos);
@@ -147,12 +129,14 @@ public class Cadastro {
 
 	public void setImagem(Image img) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
 		BufferedImage bufImagem = (BufferedImage) img;
-
 		ImageIO.write(bufImagem, "jpg", baos);
 		baos.flush();
 		imagem = baos.toByteArray();
+	}
+
+	public static void setImagem(byte[] byteArray) {
+		imagem = byteArray;
 	}
 
 }

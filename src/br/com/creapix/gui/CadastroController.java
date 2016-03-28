@@ -54,13 +54,15 @@ public class CadastroController extends MenuController implements Initializable,
 	private Button btnTagRfid;
 
 	@FXML
+	private Button btnGravar;
+
+	@FXML
 	static ImageView imgFoto;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		setLblTagRfid("Clique no botão e aproxime o card");
 		if (imgFoto == null) {
-			System.out.println(imgFoto);
 			imgFoto = new ImageView("/br/com/creapix/gui/cam.png");
 			anchorPane.getChildren().add(imgFoto);
 			imgFoto.setX(710);
@@ -75,22 +77,17 @@ public class CadastroController extends MenuController implements Initializable,
 	public void eventGravarButtonClick(ActionEvent event) {
 		EntityManager manager = new JPAUtil().getEntityManager();
 		manager.getTransaction().begin();
-
 		try {
 			cadastro.setNome(tfNome.getText());
 			cadastro.setTelefone(tfTelefone.getText());
 			cadastro.setEmail(tfEmail.getText());
 			cadastro.setQrcode(lblTagRfid.getText());
 			Cadastro.setImagem(getByteArray(imgFoto));
-
 			manager.persist(cadastro);
 			manager.getTransaction().commit();
 			manager.close();
-
 			System.out.println("Usuario cadastrado com sucesso");
-
 			limpaForm(10);
-
 		} catch (Exception ex) {
 			alert(ex.getMessage());
 		}
@@ -98,14 +95,16 @@ public class CadastroController extends MenuController implements Initializable,
 
 	@FXML
 	public void eventPegarRfidUUID(ActionEvent event) {
-		System.out.println("sera aqui");
-
 		btnTagRfid.isDisable();
 		lblTagRfid.setText("Aproxime o card da leitora...");
 		while (SerialComLeitura.getUUID() == null) {
-			verificaSerial();
+
+			try {
+				verificaSerial();
+			} catch (Exception ex) {
+				alert(ex.getMessage());
+			}
 		}
-		// tag = false;
 	}
 
 	public byte[] getByteArray(ImageView imgFoto2) throws IOException {
@@ -118,38 +117,25 @@ public class CadastroController extends MenuController implements Initializable,
 	}
 
 	private void verificaSerial() {
-
 		System.out.println("inicio da leitura");
 		SerialComLeitura leitura = new SerialComLeitura("COM5", 9600, 0);
-
 		leitura.HabilitarLeitura();
-
 		leitura.ObterIdDaPorta();
-
 		leitura.AbrirPorta();
-
 		leitura.LerDados();
-
 		// Controle de tempo da leitura aberta na serial
-
 		try {
-
 			System.out.println("Pegando UUID");
 			Thread.sleep(1000);
-
 		} catch (InterruptedException ex) {
-
 			System.out.println("Erro na Thread: " + ex);
-
 		}
 		Platform.runLater(new Runnable() {
-
 			@Override
 			public void run() {
 				setLblTagRfid(SerialComLeitura.getUUID());
 			}
 		});
-
 		leitura.FecharCom();
 	}
 
@@ -204,7 +190,6 @@ public class CadastroController extends MenuController implements Initializable,
 	}
 
 	public void alert(String msg) {
-
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setHeaderText(null);
 		alert.setTitle("Mensagem");
@@ -217,7 +202,5 @@ class apagaTask extends TimerTask {
 	@Override
 	public void run() {
 		System.out.println("Tarefa encerrada");
-
 	}
-
 }

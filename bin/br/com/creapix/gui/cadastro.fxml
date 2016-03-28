@@ -60,6 +60,7 @@
             </TextField>
             <Button fx:id="btnTagRfid" layoutX="552.0" layoutY="40.0" mnemonicParsing="false" onAction="#eventPegarRfidUUID" text="Leitor" />
             <Button fx:id="btnFoto" layoutX="740.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToWebCam" text="Foto" />
+            <Button fx:id="btnGravar" layoutX="444.0" layoutY="553.0" mnemonicParsing="false" onAction="#eventGravarButtonClick" text="Gravar" />
          </children>
       </AnchorPane>
    </top>
