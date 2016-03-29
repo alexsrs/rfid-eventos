@@ -131,17 +131,13 @@ public class WebCamPreviewController extends MenuController implements Initializ
 	}
 
 	protected void startWebCamStream() {
-
 		stopCamera = false;
 		Task<Void> task = new Task<Void>() {
-
 			@Override
 			protected Void call() throws Exception {
-
 				while (!stopCamera) {
 					try {
 						if ((grabbedImage = selWebCam.getImage()) != null) {
-
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
@@ -149,27 +145,19 @@ public class WebCamPreviewController extends MenuController implements Initializ
 									imageProperty.set(mainiamge);
 								}
 							});
-
 							grabbedImage.flush();
-
 						}
 					} catch (Exception e) {
 					} finally {
-
 					}
-
 				}
-
 				return null;
-
 			}
-
 		};
 		Thread th = new Thread(task);
 		th.setDaemon(true);
 		th.start();
 		imgWebCamCapturedImage.imageProperty().bind(imageProperty);
-
 	}
 
 	private void closeCamera() {

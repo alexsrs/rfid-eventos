@@ -1,14 +1,10 @@
 package br.com.creapix.gui;
 
-import java.awt.image.RenderedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 
 import br.com.creapix.modelo.Cadastro;
@@ -57,7 +53,9 @@ public class CadastroController extends MenuController implements Initializable,
 	private Button btnGravar;
 
 	@FXML
-	static ImageView imgFoto;
+	public static ImageView imgFoto;
+
+	private static WritableImage tempImage;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -82,7 +80,8 @@ public class CadastroController extends MenuController implements Initializable,
 			cadastro.setTelefone(tfTelefone.getText());
 			cadastro.setEmail(tfEmail.getText());
 			cadastro.setQrcode(lblTagRfid.getText());
-			Cadastro.setImagem(getByteArray(imgFoto));
+			cadastro.setImagem(imgFoto.getImage());
+
 			manager.persist(cadastro);
 			manager.getTransaction().commit();
 			manager.close();
@@ -105,15 +104,6 @@ public class CadastroController extends MenuController implements Initializable,
 				alert(ex.getMessage());
 			}
 		}
-	}
-
-	public byte[] getByteArray(ImageView imgFoto2) throws IOException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write((RenderedImage) imgFoto2, "jpg", baos);
-		baos.flush();
-		byte[] bytearray = baos.toByteArray();
-		baos.close();
-		return bytearray;
 	}
 
 	private void verificaSerial() {
@@ -149,7 +139,7 @@ public class CadastroController extends MenuController implements Initializable,
 
 	public static void setImgFoto(WritableImage image) {
 		imgFoto.setImage(image);
-
+		CadastroController.setTempImage(image);
 	}
 
 	public TextField getTfNome() {
@@ -195,6 +185,14 @@ public class CadastroController extends MenuController implements Initializable,
 		alert.setTitle("Mensagem");
 		alert.setContentText(msg);
 		alert.show();
+	}
+
+	public static WritableImage getTempImage() {
+		return tempImage;
+	}
+
+	public static void setTempImage(WritableImage tempImage) {
+		CadastroController.tempImage = tempImage;
 	}
 }
 
